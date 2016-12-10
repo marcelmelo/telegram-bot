@@ -1,11 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const TeleBot = require('telebot');
-const bot = new TeleBot('204639144:AAFFFSbjhkfeL45IBEJEHY0d-cBG_UZuslE');
+const bot = new TeleBot(process.env.TELEGRAM_BOT_KEY);
 const exec = require('child_process').exec;
 const services = require('./services')
-
-bot.connect();
-
 var app = express();
 
 let arrIds = [];
@@ -15,7 +13,7 @@ for (item in services.ids.uniqId) {
 }
 
 app.get('/', function(req, res) {
-
+bot.connect();
   var main = function () {
 
     bot.on(arrIds, msg => {
@@ -32,17 +30,15 @@ app.get('/', function(req, res) {
           }
         }
       }
-
      })
     }
     res.send(main());
   })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.HOST_PORT, function () {
+  console.log(`Example app listening on port ${process.env.HOST_PORT}!`);
 });
-// 104.131.177.24:3000
-exec('curl 104.131.177.24:3000', (error, stdout, stderr) => {
+exec(`curl localhost:${process.env.HOST_PORT}`, (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
     return;

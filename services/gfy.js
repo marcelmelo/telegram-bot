@@ -9,5 +9,5 @@ const exec = (bot, msg) => {
 
 module.exports = {
   exec,
-  regex: /^gfy /i
+  regex: /gfy /i
 }

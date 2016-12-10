@@ -10,10 +10,15 @@ let cont = 0;
 let flag = true;
 
 const exec = (bot, msg) => {
+  let chat_id = msg.chat.id;
+  let reply = msg.message_id;
   if (cont < 3) {
-    bot.sendMessage(msg.chat.id, arrRisadas[Math.floor(Math.random() * arrRisadas.length)]);
+    bot.sendMessage(chat_id, arrRisadas[Math.floor(Math.random() * arrRisadas.length, { reply })]);
     cont++;
     flag = true;
+    setTimeout(() => {
+      cont = 0;
+    } ,90000)
   }
   else {
     if (flag) {
