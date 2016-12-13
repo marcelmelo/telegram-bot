@@ -9,7 +9,7 @@ const exec = (bot, msg) => {
   .then(resp => {
     let _info = JSON.parse(resp);
     if (_info.Response != 'False') {
-      let text = _info.Title + "\n\n" + "Gênero: " + _info.Genre + "\n" + "Tipo: " + _info.Type + "\n" + "Lançado em " + _info.Released + "\n" + "Sinopse: " + _info.Plot + "\n" + "Poster: " + _info.Poster;
+      let text = _info.Title + "\n\n" + "Gênero: " + _info.Genre + "\n" + "Tipo: " + _info.Type + "\n" + "Lançado em " + _info.Released + "\n" + "Sinopse: " + _info.Plot + "\n" + "Nota: " + _info.imdbRating + "\n" + "Poster: " + _info.Poster;
       bot.sendMessage(msg.chat.id, text)
     }
     else {
